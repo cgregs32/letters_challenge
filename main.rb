@@ -6,41 +6,60 @@ def start
 
   array = action.split(',')
 
-  letter_to_ascii(array)
+  merged = letter_to_ascii(array)
 
   puts "Would you like to sort?"
   puts "1) ASC"
   puts "2) DESC"
+  response = gets.to_i
   case response
     when 1
-      order_asc(merged_array)
+      order_asc(merged)
     when 2
-      order_desc(merged_array)
+      order_desc(merged)
     else
-      "Enter valid response"
+      puts "Enter valid response"
   end
 
 end
 
 def letter_to_ascii(array)
-  merged_array = []
-  array.map do |char|
-    peice = {char => char.ord}
-    merged_array << peice
+  merged = array.map { |char| {char => char.ord} }
+  print(merged)
+  merged
+end
 
-    puts peice
-  end
-  merged_array
+def print(hash)
+  hash.each { |hash| puts hash }
 end
 
 def order_asc(merged)
-  puts "comming soon"
-  merged.sort_by { |hsh| hsh[:zip] }
+  sort = merged.sort_by(&:to_a)
+  print(sort)
+  continue
 end
 
 
 def order_desc(merged)
-  puts "comming soon"
+  sort = merged.sort_by(&:to_a).reverse!
+  print(sort)
+  continue
+end
+
+def continue
+  puts "Again?"
+  puts "1) Yes"
+  puts "2) No"
+  response = gets.to_i
+  case response
+    when 1
+      start
+    when 2
+      puts "have a good day!"
+      exit 0
+    else
+      puts "Enter valid response"
+  end
 end
 
 start
