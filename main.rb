@@ -24,7 +24,6 @@ def start
 end
 
 def letter_to_ascii(array)
-  merged = array.map { |char| {char => char.ord} }
   print(merged)
   merged
 end
